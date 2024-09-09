@@ -82,6 +82,7 @@ function MyComponent(): JSX.Element {
   useEffect(() => {
     fetch('some url')
       .then((resp) => resp.json())
+      .then(setItems)
       .catch(handleError);
   }, []);
 
