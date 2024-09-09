@@ -113,12 +113,12 @@ function MyComponent(): JSX.Element {
 to "modernize" this we would split out the inert parts and make an async server-side call:
 
 ```typescript
-export function MyComponentSkeleton({ children }: PropsWithChildren): JSX.Element {
+export function MyItemSelectHeader({ children }: PropsWithChildren): JSX.Element {
   return (
     <div className="whatever">
       <h2>Item List</h2>
       <p>These items are the ones that have extra specially goodness</p>
-      { children }
+      {children}
     </div>
   );
 }
@@ -129,7 +129,7 @@ and another component file:
 ```typescript
 'use client' // marks as client component
 
-export function MyClientComponent({ items }: MyChildComponentProps): JSX.Element {
+export function MyClientItemSelect({ items }: MyChildComponentProps): JSX.Element {
   const [selected, setSelected] = useState<Item>();
 
   // We'll count on the React compiler to memoize this for us, we'll talk
@@ -158,7 +158,7 @@ then in yet another file:
 
 ```typescript
 // Look ma! async even!
-export async function MyItemSelectSkeleton(): Promise<JSX.Element> {
+export async function MyItemSelect(): Promise<JSX.Element> {
   let items: Items[] = [];
   try {
     const resp = await fetch('some url');
@@ -169,9 +169,9 @@ export async function MyItemSelectSkeleton(): Promise<JSX.Element> {
   }
 
   return (
-    <MyComponentSkeleton>
-      <MyClientComponent items={items} />
-    </MyComponentSkeleton>
+    <MyItemSelectHeader>
+      <MyClientItemSelect items={items} />
+    </MyItemSelectHeader>
   );
 }
 ```
