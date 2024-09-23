@@ -136,22 +136,22 @@ export function MyClientItemSelect({ items }: MyChildComponentProps): JSX.Elemen
   // We'll count on the React compiler to memoize this for us, we'll talk
   // more about it in a later session
   const handleChange = (evt: React.ChangeEvent<HTMLSelectElement>): void =>
-    setSelected(items[Number(evt.target.value))]);
+    setSelected(items[Number(evt.target.value)]);
 
-  return (
+  return (<>
     <p>{selected && selected.description}</p>
     <label>Item
       <select onChange={handleChange}>
         {
-          items.map((item: Item): JSX.Element => {
+          items.map((item: Item): JSX.Element => (
             <option key={item.id} value={item.id}>
               {item.text}
             </option>
-          });
+          ))
         }
       </select>
     </label>
-  );
+  </>);
 }
 ```
 
@@ -160,7 +160,7 @@ then in yet another file:
 ```typescript
 // Look ma! async even!
 export async function MyItemSelect(): Promise<JSX.Element> {
-  let items: Items[] = [];
+  let items: Item[] = [];
   try {
     const resp = await fetch('some url');
     const data = await resp.json();
