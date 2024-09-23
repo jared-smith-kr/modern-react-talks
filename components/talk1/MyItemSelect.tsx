@@ -6,6 +6,7 @@ import type { Item } from "./types";
 export async function MyItemSelect(): Promise<JSX.Element> {
   console.log("MyItemSelect renders on the server!");
   let items: Item[] = [];
+  // Pretend this is an API call to a domain service or Apex or something
   const resp = await fetch("http://127.0.0.1:3000/api/talk1/items");
   const data = await resp.json();
   items = data;

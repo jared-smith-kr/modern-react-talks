@@ -1,3 +1,5 @@
+// This is a mock route file that will be used to mock a 3rd API response.
+// IRL you would not use a route handler like this, but instead use a real API.
 import type { Item } from "@/components/talk1/types";
 
 export function GET() {
