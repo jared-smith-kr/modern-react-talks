@@ -1,6 +1,6 @@
 # Server Actions
 
-Remember back when we first talked about RSCs and I said that "use client" marks a component as being client-side but "use server" did something completely different? Well, now we're going to talk about what "use server" actually does.
+Remember back when we first talked about RSCs and I said that `"use client"` marks a component as being client-side but `"use server"` did something completely different? Well, now we're going to talk about what `"use server"` actually does.
 
 ## The React Obesity Crisis
 
