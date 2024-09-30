@@ -1,6 +1,5 @@
 "use client";
 import { ChangeEvent, FormEvent, useState, useTransition } from "react";
-import { serverific } from "@/actions/talk3";
 
 const formControlStyles = {
   display: "flex",
@@ -16,17 +15,20 @@ export function MyForm(): JSX.Element {
   // again, not going to memoize, React compiler, later talk, yadda yadda
   const onSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
-    serverific({ a, b });
+    startTransition(() => {
+      fetch("http://127.0.0.1:3000/api/talk3", {
+        method: "POST",
+        body: JSON.stringify({ a, b }),
+      }).catch(console.error);
+    });
   };
 
   const onChange = (evt: ChangeEvent<HTMLInputElement>): void => {
-    startTransition(() => {
-      if (evt.target.name === "a") {
-        setA(evt.target.value);
-      } else {
-        setB(evt.target.value);
-      }
-    });
+    if (evt.target.name === "a") {
+      setA(evt.target.value);
+    } else {
+      setB(evt.target.value);
+    }
   };
 
   return (

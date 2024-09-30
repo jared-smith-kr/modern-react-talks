@@ -1,10 +1,6 @@
-"use server";
-
-export type MyFormData = {
-  a: string;
-  b: string;
-};
-
-export async function serverific(value: MyFormData): Promise<void> {
-  console.log(value);
+export async function serverific(data: FormData): Promise<void> {
+  "use server";
+  const a = data.get("a");
+  const b = data.get("b");
+  console.log(a, b);
 }
